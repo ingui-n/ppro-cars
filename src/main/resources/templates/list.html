@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<a href="">New Car</a>
+<a href="/create">New Car</a>
 <ul>
   <li th:each="car, i : ${cars}">
   <a th:href="@{'/detail/' + ${i.index}}">
