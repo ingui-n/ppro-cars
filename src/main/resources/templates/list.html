@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="">New Car</a>
+<ul>
+  <li th:each="car, i : ${cars}">
+  <a th:href="@{'/detail/' + ${i.index}}">
+    <span th:text="${car.spz}"></span>
+  </a>
+  </li>
+</ul>
+</body>
+</html>
