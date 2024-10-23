@@ -5,10 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/create">New Car</a>
+<a href="/car/create">New Car</a>
 <ul>
   <li th:each="car, i : ${cars}">
-  <a th:href="@{'/detail/' + ${i.index}}">
+  <a th:href="@{'/car/detail/' + ${i.index}}">
     <span th:text="${car.spz}"></span>
   </a>
   </li>
