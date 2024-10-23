@@ -54,10 +54,13 @@ public class CarController {
     public String edit(Model model, @PathVariable int index) {
         Car car = carService.getCarById(index);
 
-        car.setId(index);
-        model.addAttribute("car", car);
-        model.addAttribute("edit", true);
-        return "edit";
+        if (car != null) {
+            car.setId(index);
+            model.addAttribute("car", car);
+            model.addAttribute("edit", true);
+            return "edit";
+        }
+        return "redirect:/";
     }
 
     @PostMapping("/save")

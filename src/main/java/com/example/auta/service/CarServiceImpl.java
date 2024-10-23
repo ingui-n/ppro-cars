@@ -34,10 +34,9 @@ public class CarServiceImpl  implements CarService {
 
     @Override
     public void saveCar(Car car) {
-        if (car.getId() < 0 || car.getId() >= cars.size()) {
-            return;
+        if(car.getId() > -1 && car.getId() < cars.size()){
+            cars.remove(car.getId());
         }
-
         cars.add(car);
     }
 
