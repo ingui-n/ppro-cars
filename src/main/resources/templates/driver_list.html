@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>List of All Drivers</title>
 </head>
 <body>
-<a href="/driver/create">New Driver</a>
+<a th:href="@{'/drivers/create'}">New Driver</a>
 <ul>
-  <li th:each="driver, i : ${drivers}">
-  <a th:href="@{'/driver/detail/' + ${i.index}}">
-    <span th:text="${driver.name}"></span>
-  </a>
-  </li>
+    <li th:each="driver: ${drivers}">
+        <a th:href="@{'/drivers/detail/' + ${driver.id}}">
+            <span th:text="${driver.name}"></span>
+        </a>
+    </li>
 </ul>
 </body>
 </html>

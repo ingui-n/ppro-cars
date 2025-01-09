@@ -1,43 +1,42 @@
 package com.example.auta.service;
 
 import com.example.auta.model.Driver;
+import com.example.auta.repository.DriverRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class DriverServiceImpl implements DriverService {
-    ArrayList<Driver> drivers = new ArrayList<>();
+public class DriverServiceImpl implements DriverService{
 
-    @Override
-    public ArrayList<Driver> getAllDrivers() {
-        return drivers;
+    private DriverRepository driverRepository;
+
+    @Autowired
+    public DriverServiceImpl(DriverRepository driverRepository) {
+        this.driverRepository = driverRepository;
     }
 
     @Override
-    public Driver getDriverById(int id) {
-        if (id < 0 || id >= drivers.size()) {
-            return null;
-        }
-
-        return drivers.get(id);
+    public List<Driver> getAllDrivers() {
+        return driverRepository.findAll();
     }
 
     @Override
-    public void deleteDriverById(int id) {
-        if (id < 0 || id >= drivers.size()) {
-            return;
-        }
+    public Driver getDriverById(long id) {
+        return driverRepository.findById(id).orElse(null);
+    }
 
-        drivers.remove(id);
+    @Override
+    public void deleteDriverById(long id) {
+        Optional<Driver> driver = driverRepository.findById(id);
+        if (driver.isPresent()) {
+            driverRepository.delete(driver.get());
+        }
     }
 
     @Override
     public void saveDriver(Driver driver) {
-        if(driver.getId() > -1 && driver.getId() < drivers.size()){
-            drivers.remove(driver.getId());
-        }
-        drivers.add(driver);
+        driverRepository.save(driver);
     }
-
 }

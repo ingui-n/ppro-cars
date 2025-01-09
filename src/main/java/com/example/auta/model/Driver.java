@@ -1,35 +1,47 @@
 package com.example.auta.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
+@Entity
+@Table(name = "drivers")
 public class Driver {
-    private int id = -1;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @NotBlank
     private String name;
 
-    @Size(min = 18, max = 99, message = "Enter a valid age")
+    @Min(value = 18)
+    @Max(value = 100)
     private int age;
 
-    @Size(min = 10, max = 999999, message = "Enter a valid salary")
+    @Min(value = 20000)
     private int salary;
 
+    @OneToMany(mappedBy = "driver")
+    private List<Car> cars;
 
-    public int getSalary() {
-        return salary;
+    public List<Car> getCars() {
+        return cars;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public int getAge() {
-        return age;
+    public long getId() {
+        return id;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -40,11 +52,19 @@ public class Driver {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public int getAge() {
+        return age;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 }

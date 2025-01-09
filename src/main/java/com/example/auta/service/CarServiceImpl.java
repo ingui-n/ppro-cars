@@ -1,43 +1,44 @@
 package com.example.auta.service;
 
 import com.example.auta.model.Car;
+import com.example.auta.repository.CarRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class CarServiceImpl  implements CarService {
-    ArrayList<Car> cars = new ArrayList<>();
+public class CarServiceImpl implements CarService{
 
-    @Override
-    public ArrayList<Car> getAllCars() {
-        return cars;
+    private CarRepository carRepository;
+
+    @Autowired
+    public CarServiceImpl(CarRepository carRepository) {
+        this.carRepository = carRepository;
     }
 
     @Override
-    public Car getCarById(int id) {
-        if (id < 0 || id >= cars.size()) {
-            return null;
-        }
-
-        return cars.get(id);
+    public List<Car> getAllCars() {
+        return carRepository.findAll();
     }
 
     @Override
-    public void deleteCarById(int id) {
-        if (id < 0 || id >= cars.size()) {
-            return;
-        }
+    public Car getCarById(long id) {
+        return carRepository.findById(id).orElse(null);
+    }
 
-        cars.remove(id);
+    @Override
+    public void deleteCarById(long id) {
+        Optional<Car> car = carRepository.findById(id);
+        if (car.isPresent()) {
+            carRepository.delete(car.get());
+        }
     }
 
     @Override
     public void saveCar(Car car) {
-        if(car.getId() > -1 && car.getId() < cars.size()){
-            cars.remove(car.getId());
-        }
-        cars.add(car);
+        carRepository.save(car);
     }
+
 
 }

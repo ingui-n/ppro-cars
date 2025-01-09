@@ -1,5 +1,6 @@
 package com.example.auta.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -7,30 +8,46 @@ import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
+@Entity
+@Table(name = "cars")
 public class Car {
-    private int id = -1;
 
-    @Size(min = 7, max = 7, message = "Enter a valid spz")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Size(min = 7, max = 7, message = "Are you stupid?")
     private String spz;
 
-    @NotBlank(message = "Enter a color")
+    @NotBlank
     private String color;
 
-    @Min(value = 1, message = "Enter a valid tank volume")
-    @Max(value = 100, message = "Enter a valid tank volume")
+    @Min(value = 30)
+    @Max(value = 100)
     private float tankVolume;
 
-    @Min(value = 1, message = "Enter a valid number of seats")
-    @Max(value = 60, message = "Enter a valid number of seats")
+    @Min(value = 2)
+    @Max(value = 10)
     private int numberOfSeats;
 
-    public Car(){}
+    @ManyToOne
+    @JoinColumn(name = "driver_id")
+    private Driver driver;
 
-    public Car(String spz, String color, float tankVolume, int numberOfSeats) {
-        this.spz = spz;
-        this.color = color;
-        this.tankVolume = tankVolume;
-        this.numberOfSeats = numberOfSeats;
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getSpz() {
@@ -63,13 +80,5 @@ public class Car {
 
     public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
