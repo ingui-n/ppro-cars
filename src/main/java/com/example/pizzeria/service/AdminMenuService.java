@@ -6,10 +6,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface MenuService {
+public interface AdminMenuService {
 
     List<MenuListing> getMenu();
 
     MenuListing getListingById(long id);
 
+    void deleteListingById(long id);
+
+    void saveListing(MenuListing menuListing);
 }

@@ -8,7 +8,6 @@
 <h1>La Pizzeria</h1>
 <h2>Our menu</h2>
 
-<a th:href="@{'/menu/create'}">New listing</a>
 <ul>
     <li th:each="listing: ${listings}">
         <a th:href="@{'/menu/detail/' + ${listing.id}}">

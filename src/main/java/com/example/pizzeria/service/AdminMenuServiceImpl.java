@@ -6,14 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class MenuServiceImpl implements MenuService {
+public class AdminMenuServiceImpl implements AdminMenuService {
 
     private final MenuRepository menuRepository;
 
     @Autowired
-    public MenuServiceImpl(MenuRepository menuRepository) {
+    public AdminMenuServiceImpl(MenuRepository menuRepository) {
         this.menuRepository = menuRepository;
     }
 
@@ -25,5 +26,18 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public MenuListing getListingById(long id) {
         return menuRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void deleteListingById(long id) {
+        Optional<MenuListing> menuListing = menuRepository.findById(id);
+        if (menuListing.isPresent()) {
+            menuRepository.delete(menuListing.get());
+        }
+    }
+
+    @Override
+    public void saveListing(MenuListing menuListing) {
+        menuRepository.save(menuListing);
     }
 }
