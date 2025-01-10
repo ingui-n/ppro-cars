@@ -1,8 +1,8 @@
-package com.example.auta.controller;
+package com.example.pizzeria.controller;
 
-import com.example.auta.model.Car;
-import com.example.auta.service.CarService;
-import com.example.auta.service.DriverService;
+import com.example.pizzeria.model.Car;
+import com.example.pizzeria.service.CarService;
+import com.example.pizzeria.service.DriverService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

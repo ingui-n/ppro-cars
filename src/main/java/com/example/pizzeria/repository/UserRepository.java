@@ -1,6 +1,6 @@
-package com.example.auta.repository;
+package com.example.pizzeria.repository;
 
-import com.example.auta.model.User;
+import com.example.pizzeria.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

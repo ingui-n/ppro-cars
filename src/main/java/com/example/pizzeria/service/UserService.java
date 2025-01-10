@@ -1,6 +1,6 @@
-package com.example.auta.service;
+package com.example.pizzeria.service;
 
-import com.example.auta.model.User;
+import com.example.pizzeria.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {

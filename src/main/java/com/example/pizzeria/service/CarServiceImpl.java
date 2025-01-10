@@ -1,7 +1,7 @@
-package com.example.auta.service;
+package com.example.pizzeria.service;
 
-import com.example.auta.model.Car;
-import com.example.auta.repository.CarRepository;
+import com.example.pizzeria.model.Car;
+import com.example.pizzeria.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

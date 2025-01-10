@@ -1,6 +1,6 @@
-package com.example.auta.service;
+package com.example.pizzeria.service;
 
-import com.example.auta.model.Driver;
+import com.example.pizzeria.model.Driver;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

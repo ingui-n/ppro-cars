@@ -1,6 +1,6 @@
-package com.example.auta.security;
+package com.example.pizzeria.security;
 
-import com.example.auta.service.UserService;
+import com.example.pizzeria.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +37,9 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/orders").hasRole("DRIVER")
+                        .requestMatchers("/order").hasRole("USER")
+                        .requestMatchers("/", "/menu/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(Customizer.withDefaults())

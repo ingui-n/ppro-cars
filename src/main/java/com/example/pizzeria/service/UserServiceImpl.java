@@ -1,8 +1,8 @@
-package com.example.auta.service;
+package com.example.pizzeria.service;
 
-import com.example.auta.model.User;
-import com.example.auta.repository.UserRepository;
-import com.example.auta.security.MyUserDetails;
+import com.example.pizzeria.model.User;
+import com.example.pizzeria.repository.UserRepository;
+import com.example.pizzeria.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

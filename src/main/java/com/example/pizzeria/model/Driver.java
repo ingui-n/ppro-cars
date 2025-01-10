@@ -1,4 +1,4 @@
-package com.example.auta.model;
+package com.example.pizzeria.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;

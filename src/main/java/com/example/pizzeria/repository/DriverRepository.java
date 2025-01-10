@@ -1,6 +1,6 @@
-package com.example.auta.repository;
+package com.example.pizzeria.repository;
 
-import com.example.auta.model.Driver;
+import com.example.pizzeria.model.Driver;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

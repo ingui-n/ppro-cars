@@ -1,7 +1,7 @@
-package com.example.auta;
+package com.example.pizzeria;
 
-import com.example.auta.model.User;
-import com.example.auta.service.UserService;
+import com.example.pizzeria.model.User;
+import com.example.pizzeria.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,14 +10,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class AutaApplication {
+public class PizzeriaApplication {
 
     private UserService userService;
 
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AutaApplication(UserService userService, PasswordEncoder passwordEncoder){
+    public PizzeriaApplication(UserService userService, PasswordEncoder passwordEncoder){
         this.userService =userService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -41,7 +41,7 @@ public class AutaApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(AutaApplication.class, args);
+        SpringApplication.run(PizzeriaApplication.class, args);
     }
 
 }

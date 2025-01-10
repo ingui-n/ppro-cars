@@ -1,4 +1,4 @@
-package com.example.auta.security;
+package com.example.pizzeria.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
