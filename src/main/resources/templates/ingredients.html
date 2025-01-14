@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Listings | LA PIZZERIA</title>
+</head>
+<body>
+<h1>La Pizzeria</h1>
+<h2>Ingredients</h2>
+
+<a th:href="@{'/admin/ingredients/create'}">New ingredient</a>
+<ul>
+    <li th:each="listing: ${ingredients}">
+        <a th:href="@{'/admin/ingredients/detail/' + ${listing.id}}">
+            <span th:text="${listing.name}"></span>
+            <span> - </span>
+            <span th:text="'Available: ' + ${listing.available ? 'yes' : 'no'}"></span>
+        </a>
+    </li>
+</ul>
+</body>
+</html>

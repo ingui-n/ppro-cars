@@ -5,6 +5,8 @@
     <title th:text="'Detail of a ' + ${listing.name} + ' | LA PIZZERIA'"></title>
 </head>
 <body>
+<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
+
 <b>Name: </b><span th:text="${listing.name}"></span><br>
 <b>Description: </b><span th:text="${listing.description}"></span><br>
 <b>Price: </b><span th:text="${listing.price}"></span><br>

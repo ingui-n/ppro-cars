@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Detail of a ' + ${ingredient.name} + ' | LA PIZZERIA'"></title>
+</head>
+<body>
+<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
+
+<a th:href="@{'/admin/ingredients/edit/' + ${ingredient.id}}">Edit Listing</a><br>
+<a th:href="@{'/admin/ingredients/delete/' + ${ingredient.id}}">Delete Listing</a><br>
+
+<b>Name: </b><span th:text="${ingredient.name}"></span><br>
+<b>Available: </b><span th:text="${ingredient.available ? 'yes' : 'no'}"></span><br>
+</body>
+</html>
