@@ -9,9 +9,9 @@
 <h2>Our menu</h2>
 
 <ul>
-    <li th:each="listing: ${listings}">
-        <a th:href="@{'/menu/detail/' + ${listing.id}}">
-            <span th:text="${listing.name}"></span>
+    <li th:each="pizza: ${pizzas}">
+        <a th:href="@{'/menu/detail/' + ${pizza.id}}">
+            <span th:text="${pizza.name}"></span>
         </a>
     </li>
 </ul>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${edit ? 'Edit' : 'Add'} + ' Pizza | LA PIZZERIA'"></title>
+</head>
+<body>
+<form th:action="@{'/admin/pizza/save'}" method="post" th:object="${pizza}">
+    <input type="hidden" th:field="*{id}">
+    Name: <input type="text" th:field="*{name}">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br>
+    Description: <input type="text" th:field="*{description}">
+    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br>
+    Price: <input type="number" th:field="*{price}">
+    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span><br>
+    Ingredients:
+    <select th:field="*{ingredients}" multiple="multiple">
+        <option th:each="ingredient: ${ingredients}" th:text="${ingredient.name}" th:value="${ingredient.id}"></option>
+    </select>
+    <p>Didn't find ingredient you need?</p>
+    <a th:href="@{'/admin/ingredients/create'}">Add new ingredient</a>
+    <br>
+    <input type="submit" value="Save">
+</form>
+</body>
+</html>

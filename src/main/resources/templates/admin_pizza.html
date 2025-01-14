@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizzas | LA PIZZERIA</title>
+</head>
+<body>
+<h1>La Pizzeria</h1>
+<h2>Our menu</h2>
+
+<a th:href="@{'/admin/pizza/create'}">New Pizza</a>
+<ul>
+    <li th:each="pizza: ${pizzas}">
+        <a th:href="@{'/admin/pizza/detail/' + ${pizza.id}}">
+            <span th:text="${pizza.name}"></span>
+        </a>
+    </li>
+</ul>
+</body>
+</html>

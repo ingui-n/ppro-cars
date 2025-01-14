@@ -3,6 +3,8 @@ package com.example.pizzeria.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 @Entity
 @Table(name = "ingredients")
 public class Ingredient {
@@ -14,6 +16,9 @@ public class Ingredient {
     private String name;
 
     private boolean available;
+
+    @ManyToMany(mappedBy = "ingredients")
+    private List<Pizza> pizzas;
 
     public long getId() {
         return id;
@@ -37,5 +42,13 @@ public class Ingredient {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public List<Pizza> getPizzas() {
+        return pizzas;
+    }
+
+    public void setPizzas(List<Pizza> pizzas) {
+        this.pizzas = pizzas;
     }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${edit ? 'Edit' : 'Create'} + ' Listing | LA PIZZERIA'"></title>
+    <title th:text="${edit ? 'Edit' : 'Create'} + ' Ingredient | LA PIZZERIA'"></title>
 </head>
 <body>
 <form th:action="@{'/admin/ingredients/save'}" method="post" th:object="${ingredient}">

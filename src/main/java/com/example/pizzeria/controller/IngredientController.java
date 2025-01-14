@@ -1,9 +1,8 @@
 package com.example.pizzeria.controller;
 
 import com.example.pizzeria.model.Ingredient;
-import com.example.pizzeria.model.MenuListing;
+import com.example.pizzeria.service.AdminPizzaService;
 import com.example.pizzeria.service.IngredientService;
-import com.example.pizzeria.service.MenuService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,16 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IngredientController {
 
     private final IngredientService ingredientService;
+    private final AdminPizzaService adminPizzaService;
 
     @Autowired
-    public IngredientController(IngredientService ingredientService) {
+    public IngredientController(IngredientService ingredientService, AdminPizzaService adminPizzaService) {
         this.ingredientService = ingredientService;
+        this.adminPizzaService = adminPizzaService;
     }
 
     @GetMapping({"", "/"})
     public String list(Model model) {
         model.addAttribute("ingredients", ingredientService.getIngredients());
-        return "ingredients";
+        return "admin_ingredients";
     }
 
     @GetMapping("/detail/{id}")
@@ -36,7 +37,7 @@ public class IngredientController {
         Ingredient ingredient = ingredientService.getIngredientById(id);
         if (ingredient != null) {
             model.addAttribute("ingredient", ingredient);
-            return "ingredient_detail";
+            return "admin_ingredient_detail";
         }
         return "redirect:/admin/ingredients";
     }
@@ -51,7 +52,8 @@ public class IngredientController {
     public String create(Model model) {
         model.addAttribute("ingredient", new Ingredient());
         model.addAttribute("edit", false);
-        return "ingredient_edit";
+        model.addAttribute("pizzas", adminPizzaService.getPizzas());
+        return "admin_ingredient_edit";
     }
 
     @GetMapping("/edit/{id}")
@@ -60,7 +62,8 @@ public class IngredientController {
         if (ingredient != null) {
             model.addAttribute("ingredient", ingredient);
             model.addAttribute("edit", true);
-            return "ingredient_edit";
+            model.addAttribute("pizzas", adminPizzaService.getPizzas());
+            return "admin_ingredient_edit";
         }
         return "redirect:/admin/ingredients";
     }
@@ -70,7 +73,8 @@ public class IngredientController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("edit", true);
             model.addAttribute("ingredient", ingredientService.getIngredients());
-            return "ingredient_edit";
+            model.addAttribute("pizzas", adminPizzaService.getPizzas());
+            return "admin_ingredient_edit";
         }
         ingredientService.saveIngredient(ingredient);
         return "redirect:/admin/ingredients";

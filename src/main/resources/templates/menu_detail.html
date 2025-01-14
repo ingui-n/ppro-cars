@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Detail of a ' + ${pizza.name} + ' | LA PIZZERIA'"></title>
+</head>
+<body>
+<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
+
+<b>Name: </b><span th:text="${pizza.name}"></span><br>
+<b>Description: </b><span th:text="${pizza.description}"></span><br>
+<b>Price: </b><span th:text="${pizza.price}"></span><br>
+<b>Is available: </b><span th:text="${pizza.isAvailable() ? 'yes' : 'no'}"></span>
+<p th:hidden="${pizza.ingredients.size() == 0 ? 'true' : 'false'}">Ingredients:</p>
+<ul>
+    <li th:each="ingredient: ${pizza.ingredients}">
+        <span th:text="${ingredient.name}"></span>
+    </li>
+</ul>
+</body>
+</html>
