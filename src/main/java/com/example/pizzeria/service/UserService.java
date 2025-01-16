@@ -7,5 +7,7 @@ public interface UserService extends UserDetailsService {
 
     User findByUsername(String username);
 
-    void save(User user);
+    void signUp(User user);
+
+    boolean addUser(String username, String password, String role);
 }

@@ -17,26 +17,31 @@ public class PizzeriaApplication {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public PizzeriaApplication(UserService userService, PasswordEncoder passwordEncoder){
-        this.userService =userService;
+    public PizzeriaApplication(UserService userService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Bean
     public CommandLineRunner demo() {
         return (args) -> {
-            addUser("admin", "heslo", "ADMIN");
-            addUser("user", "heslo", "USER");
+
+           // addUser("admin", "heslo123456", "ADMIN", "man", "pan", "tin@ten.com", "741258963");
+//            addUser("user", "heslo123456", "USER");
         };
     }
 
-    private void addUser(String username, String password, String role) {
+    private void addUser(String username, String password, String role, String firstName, String lastName, String email, String phoneNumber) {
         if (userService.findByUsername(username) == null) {
             User user = new User();
             user.setUsername(username);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(email);
+            user.setPhoneNumber(phoneNumber);
             user.setPassword(passwordEncoder.encode(password));
             user.setRole(role);
-            userService.save(user);
+            userService.signUp(user);
         }
     }
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in | LA PIZZERIA</title>
+</head>
+<body>
+<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
+<h2>Sign in</h2>
+
+<form th:action="@{'/auth/sign-in'}" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <input type="submit" value="Sign in">
+</form>
+<p th:if="${param.error}">Invalid username or password</p>
+<p th:if="${param.logout}">You have been logged out</p>
+
+<p>Don't have an account?</p>
+<a th:href="@{'/auth/sign-up'}">Register</a>
+</body>
+</html>

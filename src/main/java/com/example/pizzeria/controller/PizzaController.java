@@ -29,7 +29,7 @@ public class PizzaController {
     @GetMapping({"/", ""})
     public String list(Model model) {
         model.addAttribute("pizzas", adminPizzaService.getPizzas());
-        return "admin_pizza";
+        return "admin/pizza/index";
     }
 
     @GetMapping("/detail/{id}")
@@ -37,7 +37,7 @@ public class PizzaController {
         Pizza pizza = adminPizzaService.getPizzaById(id);
         if (pizza != null) {
             model.addAttribute("pizza", pizza);
-            return "admin_pizza_detail";
+            return "admin/pizza/detail";
         }
         return "redirect:/admin/pizza";
     }
@@ -53,7 +53,7 @@ public class PizzaController {
         model.addAttribute("pizza", new Pizza());
         model.addAttribute("edit", false);
         model.addAttribute("ingredients", ingredientService.getIngredients());
-        return "admin_pizza_edit";
+        return "admin/pizza/edit";
     }
 
     @GetMapping("/edit/{id}")
@@ -63,7 +63,7 @@ public class PizzaController {
             model.addAttribute("pizza", pizza);
             model.addAttribute("edit", true);
             model.addAttribute("ingredients", ingredientService.getIngredients());
-            return "admin_pizza_edit";
+            return "admin/pizza/edit";
         }
         return "redirect:/admin/pizza";
     }
@@ -74,7 +74,7 @@ public class PizzaController {
             model.addAttribute("edit", true);
             model.addAttribute("pizzas", adminPizzaService.getPizzas());
             model.addAttribute("ingredients", ingredientService.getIngredients());
-            return "admin_pizza_edit";
+            return "admin/pizza/edit";
         }
         adminPizzaService.savePizza(pizza);
         return "redirect:/admin/pizza";

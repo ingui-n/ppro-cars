@@ -1,6 +1,9 @@
 package com.example.pizzeria.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -9,15 +12,34 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @Size(min = 2, max = 25, message = "Enter valid firstname")
     private String firstName;
+
+    @NotBlank
+    @Size(min = 2, max = 25, message = "Enter valid lastname")
     private String lastName;
+
+    @NotBlank
+    @Email(message = "Enter valid email address")
     private String email;
+
+    @NotBlank
+    @Size(min = 9, max = 13, message = "Enter valid phone number")
     private String phoneNumber;
 
+    @NotBlank
+    private String role = "USER";
 
+    @NotBlank
+    @Size(min = 3, max = 10, message = "Username length must be in <3;10> interval")
     private String username;
+
+    @NotBlank
     private String password;
-    private String role;
+
+    @NotBlank
+    private String confirmPassword;
 
     public Long getId() {
         return id;
@@ -25,14 +47,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -82,5 +96,21 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

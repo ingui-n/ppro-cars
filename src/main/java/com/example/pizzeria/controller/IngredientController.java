@@ -29,7 +29,7 @@ public class IngredientController {
     @GetMapping({"", "/"})
     public String list(Model model) {
         model.addAttribute("ingredients", ingredientService.getIngredients());
-        return "admin_ingredients";
+        return "admin/ingredient/index";
     }
 
     @GetMapping("/detail/{id}")
@@ -37,7 +37,7 @@ public class IngredientController {
         Ingredient ingredient = ingredientService.getIngredientById(id);
         if (ingredient != null) {
             model.addAttribute("ingredient", ingredient);
-            return "admin_ingredient_detail";
+            return "admin/ingredient/detail";
         }
         return "redirect:/admin/ingredients";
     }
@@ -53,7 +53,7 @@ public class IngredientController {
         model.addAttribute("ingredient", new Ingredient());
         model.addAttribute("edit", false);
         model.addAttribute("pizzas", adminPizzaService.getPizzas());
-        return "admin_ingredient_edit";
+        return "admin/ingredient/edit";
     }
 
     @GetMapping("/edit/{id}")
@@ -63,7 +63,7 @@ public class IngredientController {
             model.addAttribute("ingredient", ingredient);
             model.addAttribute("edit", true);
             model.addAttribute("pizzas", adminPizzaService.getPizzas());
-            return "admin_ingredient_edit";
+            return "admin/ingredient/edit";
         }
         return "redirect:/admin/ingredients";
     }
@@ -74,7 +74,7 @@ public class IngredientController {
             model.addAttribute("edit", true);
             model.addAttribute("ingredient", ingredientService.getIngredients());
             model.addAttribute("pizzas", adminPizzaService.getPizzas());
-            return "admin_ingredient_edit";
+            return "admin/ingredient/edit";
         }
         ingredientService.saveIngredient(ingredient);
         return "redirect:/admin/ingredients";

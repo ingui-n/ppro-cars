@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -36,6 +37,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/auth/**").anonymous()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/orders").hasRole("DRIVER")
                         .requestMatchers("/order").hasRole("USER")
@@ -43,14 +45,14 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(Customizer.withDefaults())
-                /*.formLogin((form) -> form
-                        .loginPage("/login") // Custom login page
-                        .loginProcessingUrl("/login") // Form submission URL
+                .formLogin((form) -> form
+                        .loginPage("/auth/sign-in") // Custom login page
+                        .loginProcessingUrl("/auth/sign-in") // Form submission URL
                         .defaultSuccessUrl("/", true)
-                        .permitAll())*/
+                        .permitAll())
                 .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutUrl("/sign-out")
+                        .logoutSuccessUrl("/auth/sign-in?logout")
                         .permitAll()
                 )
                 .exceptionHandling((exceptions) -> exceptions
@@ -62,7 +64,7 @@ public class SecurityConfig {
     @Bean
     public AccessDeniedHandler accessDeniedHandler() {
         return (request, response, accessDeniedException) -> {
-            response.sendRedirect("/403");
+            response.sendRedirect("/");// /430
         };
     }
 }
