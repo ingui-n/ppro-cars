@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/auth/sign-in") // Custom login page
                         .loginProcessingUrl("/auth/sign-in") // Form submission URL
-                        .defaultSuccessUrl("/", true)
+                        .defaultSuccessUrl("/", false)
                         .permitAll())
                 .logout(logout -> logout
                         .logoutUrl("/sign-out")

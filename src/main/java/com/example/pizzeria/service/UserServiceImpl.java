@@ -37,22 +37,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void signUp(User user) {
-        user.setRole("USER"); // all registering users must have this default role
         userRepository.save(user);
     }
 
     @Override
-    public boolean addUser(String username, String password, String role) {
+    public void addUser(String username, String password, String confirmPassword, String role, String firstName, String lastName, String email, String phoneNumber) {
         if (findByUsername(username) == null) {
             User user = new User();
             user.setUsername(username);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(email);
+            user.setPhoneNumber(phoneNumber);
             user.setPassword(passwordEncoder.encode(password));
+            user.setConfirmPassword(passwordEncoder.encode(confirmPassword));
             user.setRole(role);
             signUp(user);
-
-            return true;
         }
-
-        return false;
     }
 }
