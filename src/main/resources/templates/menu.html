@@ -23,14 +23,17 @@
                 <span th:text="${ingredient.name}"></span>
             </li>
         </ul>
-        <br><br>
+        <br>
 
-        <form th:action="@{/cart/add}" method="post">
-            <input type="hidden" name="pizzaId" th:value="${pizza.id}" />
-            <label for="quantity">Quantity:</label>
-            <input type="number" name="quantity" id="quantity" value="1" min="1" style="width: 60px;" required />
-            <button type="submit">Add to Cart</button>
-        </form>
+        <div th:if="${pizza.isAvailable()}">
+            <form th:action="@{/cart/add}" method="post">
+                <input type="hidden" name="pizzaId" th:value="${pizza.id}"/>
+                <label for="quantity">Quantity:</label>
+                <input type="number" name="quantity" id="quantity" value="1" min="1" style="width: 60px;" required/>
+                <button type="submit">Add to Cart</button>
+            </form>
+        </div>
+        <br><br><br><br>
     </li>
 </ul>
 </body>
