@@ -39,8 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/auth/**").anonymous()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/orders").hasRole("DRIVER")
-                        .requestMatchers("/order").hasRole("USER")
+                        .requestMatchers("/cart").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/", "/menu/**").permitAll()
                         .anyRequest().authenticated()
                 )

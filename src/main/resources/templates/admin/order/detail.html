@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Detail of an order | LA PIZZERIA'"></title>
+</head>
+<body>
+<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
+<h2>Order Detail</h2>
+<div th:replace="~{admin/fragments/header :: header}"></div>
+
+<b>Created: </b><span th:text="${order.createdAt}"></span><br>
+<b>Status: </b><span th:text="${order.status}"></span><br>
+<b>Price: </b><span th:text="${order.price}"></span><br>
+<b>Pizzas: </b><br>
+<ul>
+    <li th:each="pizza: ${order.pizzas}">
+        <a th:href="@{'/admin/pizza/detail/' + ${pizza.id}}">
+            <span th:text="${pizza.name}"></span>
+        </a>
+    </li>
+</ul>
+<div>
+    <span>Customer</span><br>
+    <b>Lastname: </b><span th:text="${order.user.lastName}"></span><br>
+    <b>Firstname: </b><span th:text="${order.user.firstName}"></span><br>
+    <b>Email: </b><span th:text="${order.user.email}"></span><br>
+    <b>Phone: </b><span th:text="${order.user.phoneNumber}"></span><br>
+</div>
+
+<form th:action="@{'/admin/order/detail/' + ${id} + '/update-status'}" method="post">
+    <label for="status">Order Status:</label>
+    <select id="status" name="status">
+        <option value="Received" th:selected="${order.status == 'Received'}">Received</option>
+        <option value="In Preparation" th:selected="${order.status == 'In Preparation'}">In Preparation</option>
+        <option value="On the way" th:selected="${order.status == 'On the way'}">On the way</option>
+        <option value="Cancelled" th:selected="${order.status == 'Cancelled'}">Cancelled</option>
+        <option value="Delivered" th:selected="${order.status == 'Delivered'}">Delivered</option>
+    </select>
+    <br>
+    <input type="submit" value="Update status">
+</form>
+</body>
+</html>

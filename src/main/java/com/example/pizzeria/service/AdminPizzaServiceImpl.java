@@ -1,5 +1,6 @@
 package com.example.pizzeria.service;
 
+import com.example.pizzeria.model.Ingredient;
 import com.example.pizzeria.model.Pizza;
 import com.example.pizzeria.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,16 @@ public class AdminPizzaServiceImpl implements AdminPizzaService {
 
     @Override
     public void savePizza(Pizza pizza) {
+        pizzaRepository.save(pizza);
+    }
+
+    @Override
+    public void addPizza(String name, String description, double price, List<Ingredient> ingredients) {
+        Pizza pizza = new Pizza();
+        pizza.setName(name);
+        pizza.setDescription(description);
+        pizza.setPrice(price);
+        pizza.setIngredients(ingredients);
         pizzaRepository.save(pizza);
     }
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders | LA PIZZERIA</title>
+</head>
+<body>
+<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
+<h2>Orders</h2>
+<div th:replace="~{admin/fragments/header :: header}"></div>
+
+<ul>
+    <li th:each="order: ${orders}">
+        <a th:href="@{'/admin/orders/detail/' + ${order.id}}">
+            <span th:text="${order.user.lastName}"></span>
+            <span th:text="${order.user.firstName}"></span>
+            <span th:text="${order.price}"></span>
+            <span th:text="${order.createdAt}"></span>
+        </a>
+    </li>
+</ul>
+</body>
+</html>

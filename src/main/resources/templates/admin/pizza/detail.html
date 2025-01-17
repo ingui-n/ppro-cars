@@ -5,6 +5,10 @@
     <title th:text="'Detail of a ' + ${pizza.name} + ' | LA PIZZERIA'"></title>
 </head>
 <body>
+<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
+<h2>Pizza Detail</h2>
+<div th:replace="~{admin/fragments/header :: header}"></div>
+
 <a th:href="@{'/admin/pizza/edit/' + ${pizza.id}}">Edit Pizza</a><br>
 <a th:href="@{'/admin/pizza/delete/' + ${pizza.id}}">Delete Pizza</a><br>
 <b>Name: </b><span th:text="${pizza.name}"></span><br>
@@ -14,7 +18,8 @@
     <li th:each="ingredient: ${pizza.ingredients}">
         <a th:href="@{'/admin/ingredient/detail/' + ${ingredient.id}}">
             <span th:text="${ingredient.name}"></span>
-            <span th:text="${ingredient.available}"></span>
+            <span> - </span>
+            <span th:text="@{'available: ' + ${ingredient.available ? 'yes' : 'no'}}"></span>
         </a>
     </li>
 </ul>

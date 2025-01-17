@@ -16,7 +16,7 @@ public class MenuListing {
     private String description;
 
     @Min(value = 0)
-    private int price;
+    private Double price;
 
     public Long getId() {
         return id;
@@ -42,11 +42,11 @@ public class MenuListing {
         this.description = description;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

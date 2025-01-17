@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout | LA PIZZERIA</title>
+</head>
+<body>
+<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
+<h2>Checkout</h2>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<p>Review your order and confirm:</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Pizza</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${cart.items}">
+        <td th:text="${item.pizza.name}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.pizza.price * item.quantity}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<p>Total Price: <span th:text="${cart.totalPrice}"></span></p>
+
+<form th:action="@{/cart/order-placed}" method="post">
+    <button type="submit">Place Order</button>
+</form>
+<a href="/cart">Back to Cart</a>
+</body>
+</html>

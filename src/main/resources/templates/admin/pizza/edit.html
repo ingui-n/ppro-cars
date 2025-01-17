@@ -5,6 +5,10 @@
     <title th:text="${edit ? 'Edit' : 'Add'} + ' Pizza | LA PIZZERIA'"></title>
 </head>
 <body>
+<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
+<h2>Pizza Edit</h2>
+<div th:replace="~{admin/fragments/header :: header}"></div>
+
 <form th:action="@{'/admin/pizza/save'}" method="post" th:object="${pizza}">
     <input type="hidden" th:field="*{id}">
     Name: <input type="text" th:field="*{name}">

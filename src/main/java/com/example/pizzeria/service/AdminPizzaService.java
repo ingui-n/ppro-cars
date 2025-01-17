@@ -1,5 +1,6 @@
 package com.example.pizzeria.service;
 
+import com.example.pizzeria.model.Ingredient;
 import com.example.pizzeria.model.Pizza;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +16,6 @@ public interface AdminPizzaService {
     void deletePizzaById(long id);
 
     void savePizza(Pizza pizza);
+
+    void addPizza(String name, String description, double price, List<Ingredient> ingredients);
 }

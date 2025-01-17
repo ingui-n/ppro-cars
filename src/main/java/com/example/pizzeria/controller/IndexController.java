@@ -14,10 +14,9 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/admin/")
-    @ResponseBody
+    @GetMapping({"/admin/", "/admin"})
     public String admin(){
-        return "<h1>Admin section</h1>";
+        return "admin/index";
     }
 
     @GetMapping("/403")

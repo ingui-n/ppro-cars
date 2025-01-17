@@ -1,0 +1,13 @@
+<th:block th:fragment="header" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div>
+        <a th:href="@{/admin/pizza}">Manage Pizzas</a>
+        <a th:href="@{/admin/ingredient}">Manage Ingredients</a>
+        <a th:href="@{/admin/orders}">Manage Orders</a>
+        <div sec:authorize="hasRole('ADMIN')">
+            <form th:action="@{/sign-out}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <button type="submit">Sign Out</button>
+            </form>
+        </div>
+    </div>
+</th:block>

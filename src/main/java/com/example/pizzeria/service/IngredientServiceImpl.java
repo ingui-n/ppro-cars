@@ -40,4 +40,12 @@ public class IngredientServiceImpl implements IngredientService {
     public void saveIngredient(Ingredient ingredient) {
         ingredientRepository.save(ingredient);
     }
+
+    @Override
+    public void addIngredient(String name, boolean available) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name);
+        ingredient.setAvailable(available);
+        ingredientRepository.save(ingredient);
+    }
 }
