@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign out | LA PIZZERIA</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
-<h2>Sign in</h2>
+<div th:replace="~{fragments/header :: header}"></div>
+<h2>Sign out</h2>
 
 <form th:action="@{'/auth/sign-out'}" method="post">
     <input type="submit" value="Sign out">

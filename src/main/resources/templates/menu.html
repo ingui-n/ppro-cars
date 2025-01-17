@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Menu Listings | LA PIZZERIA</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
-<h2>Our menu</h2>
 <div th:replace="~{fragments/header :: header}"></div>
+<h2>Our menu</h2>
 
 <ul>
     <li th:each="pizza: ${pizzas}">

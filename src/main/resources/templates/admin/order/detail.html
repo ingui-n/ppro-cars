@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="'Detail of an order | LA PIZZERIA'"></title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
-<h2>Order Detail</h2>
 <div th:replace="~{admin/fragments/header :: header}"></div>
+<h2>Order Detail</h2>
 
 <b>Created: </b><span th:text="${order.createdAt}"></span><br>
 <b>Status: </b><span th:text="${order.status}"></span><br>

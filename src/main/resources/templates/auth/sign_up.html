@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign up | LA PIZZERIA</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
+<div th:replace="~{fragments/header :: header}"></div>
 <h2>Sign up</h2>
 
 <form th:action="@{'/auth/sign-up'}" method="post" th:object="${user}">

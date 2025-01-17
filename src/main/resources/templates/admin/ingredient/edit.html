@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/main.css">
     <title th:text="${edit ? 'Edit' : 'Create'} + ' Ingredient | LA PIZZERIA'"></title>
 </head>
 <body>
-<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
-<h2>Edit Ingredient</h2>
 <div th:replace="~{admin/fragments/header :: header}"></div>
+<h2>Edit Ingredient</h2>
 
 <form th:action="@{'/admin/ingredients/save'}" method="post" th:object="${ingredient}">
     <input type="hidden" th:field="*{id}">

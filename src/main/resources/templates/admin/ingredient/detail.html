@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="'Detail of a ' + ${ingredient.name} + ' | LA PIZZERIA'"></title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
-<h2>Ingredient Detail</h2>
 <div th:replace="~{admin/fragments/header :: header}"></div>
+<h2>Ingredient Detail</h2>
 
 <a th:href="@{'/admin/ingredients/edit/' + ${ingredient.id}}">Edit Ingredient</a><br>
 <a th:href="@{'/admin/ingredients/delete/' + ${ingredient.id}}">Delete Ingredient</a><br>

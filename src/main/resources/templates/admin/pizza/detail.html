@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="'Detail of a ' + ${pizza.name} + ' | LA PIZZERIA'"></title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
-<h2>Pizza Detail</h2>
 <div th:replace="~{admin/fragments/header :: header}"></div>
+<h2>Pizza Detail</h2>
 
 <a th:href="@{'/admin/pizza/edit/' + ${pizza.id}}">Edit Pizza</a><br>
 <a th:href="@{'/admin/pizza/delete/' + ${pizza.id}}">Delete Pizza</a><br>
 <b>Name: </b><span th:text="${pizza.name}"></span><br>
 <b>Description: </b><span th:text="${pizza.description}"></span><br>
 <b>Price: </b><span th:text="${pizza.price}"></span><br>
+<b>Ingredients:</b>
 <ul>
     <li th:each="ingredient: ${pizza.ingredients}">
         <a th:href="@{'/admin/ingredient/detail/' + ${ingredient.id}}">

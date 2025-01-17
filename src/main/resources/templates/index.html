@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>LA PIZZERIA</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<h1><a th:href="@{'/'}">La Pizzeria</a></h1>
 <div th:replace="~{fragments/header :: header}"></div>
-<h2>Welcome on site with</h2>
-<h1>La Pizzeria</h1>
-<div>
-    <a th:href="@{'/menu'}">Check out our menu</a>
+<div class="index_container">
+    <h3>
+        <a th:href="@{'/menu'}">Check out our menu</a>
+    </h3>
     <br/>
 </div>
 </body>
